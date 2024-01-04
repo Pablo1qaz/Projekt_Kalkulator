@@ -1,0 +1,3 @@
+C:/Users/pawel/OneDrive/Pulpit/Projekt JPO/Kalkulator/CMakeFiles/Kalkulator.dir
+C:/Users/pawel/OneDrive/Pulpit/Projekt JPO/Kalkulator/CMakeFiles/ALL_BUILD.dir
+C:/Users/pawel/OneDrive/Pulpit/Projekt JPO/Kalkulator/CMakeFiles/ZERO_CHECK.dir
