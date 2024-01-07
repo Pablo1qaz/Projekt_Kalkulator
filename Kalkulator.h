@@ -1,20 +1,25 @@
-﻿// Kalkulator.h : Include file for standard system include files,
-// or project specific include files.
-
-#pragma once
-
-#include <iostream>
-#include <cstdlib>
+﻿#include <iostream>
+#include <string>
 #include <sstream>
 #include <iomanip>
 #include <cmath>
 #include <algorithm>
 
-using std::cout, std::endl, std::string, std::cin, std::cerr;
+using std::cout, std::endl, std::string, std::cin;
 
+class NumberConverter {
+public:
+    NumberConverter() = default;
+    ~NumberConverter() = default;
 
+   string toBinary(int decimal) const;
+   string toOctal(int decimal) const;
+   string toHexadecimal(int decimal) const;
+    int getInteger(const string& prompt, int min, int max) const;
+    bool isValidInput(const string& input, int base) const;
+};
 
-string toBinary(int decimal) {
+string NumberConverter::toBinary(int decimal) const {
     std::stringstream ss;
     while (decimal) {
         ss << (decimal % 2);
@@ -25,28 +30,28 @@ string toBinary(int decimal) {
     return binary.empty() ? "0" : binary;
 }
 
-string toOctal(int decimal) {
+string NumberConverter::toOctal(int decimal) const {
     std::stringstream ss;
     ss << std::oct << decimal;
     return ss.str();
 }
 
-string toHexadecimal(int decimal) {
+string NumberConverter::toHexadecimal(int decimal) const {
     std::stringstream ss;
     ss << std::hex << std::uppercase << decimal;
     return ss.str();
 }
 
-int getInteger(const string& prompt, int min, int max) {
+int NumberConverter::getInteger(const string& prompt, int min, int max) const {
     int value;
     while (true) {
         cout << prompt;
         cin >> value;
 
         if (cin.fail() || value < min || value > max) {
-            cin.clear(); // Resetuj stan błędu
-            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Wyczyść bufor wejściowy
-            cerr << "Invalid input. Please enter a valid integer." << endl;
+            cin.clear();
+            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cerr << "Invalid input. Please enter a valid integer." << endl;
         }
         else {
             break;
@@ -56,32 +61,27 @@ int getInteger(const string& prompt, int min, int max) {
     return value;
 }
 
-bool isValidInput(const std::string& input, int base) {
-    // Funkcja sprawdzająca, czy wejściowy ciąg jest poprawny dla wybranego systemu liczbowego
+bool NumberConverter::isValidInput(const string& input, int base) const {
     for (char c : input) {
         int digit;
         if (base == 1) {
-            // System binarny
             digit = c - '0';
             if (digit != 0 && digit != 1) {
                 return false;
             }
         }
         else if (base == 2) {
-            // System ósemkowy
             digit = c - '0';
             if (digit < 0 || digit > 7) {
                 return false;
             }
         }
         else if (base == 3) {
-            // System dziesiętny
             if (!isdigit(c)) {
                 return false;
             }
         }
         else if (base == 4) {
-            // System szesnastkowy
             if (!isxdigit(c)) {
                 return false;
             }

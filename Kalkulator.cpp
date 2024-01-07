@@ -2,11 +2,12 @@
 
 
 int main() {
+    NumberConverter converter;
+
     while (true) {
         int sourceBase, targetBase;
-        string sourceNumber;
+        std::string sourceNumber;
 
-        // Menu wyboru systemu liczbowego źródłowego
         cout << "Choose source numeric system:" << endl;
         cout << "1. Binary" << endl;
         cout << "2. Octal" << endl;
@@ -14,11 +15,7 @@ int main() {
         cout << "4. Hexadecimal" << endl;
         cout << "0. Exit" << endl;
 
-        cout << endl;
-
-        sourceBase = getInteger("Choice: ", 0, 4);
-
-        cout << endl;
+        sourceBase = converter.getInteger("Choice: ", 0, 4);
 
         if (sourceBase == 0) {
             cout << "Program terminated." << endl;
@@ -30,22 +27,15 @@ int main() {
             return EXIT_FAILURE;
         }
 
-        if (sourceBase == 1 || sourceBase == 2 || sourceBase == 3 || sourceBase == 4){
         cout << "Enter number in the source numeric system: ";
         cin >> sourceNumber;
 
-        cout << endl;
-
-        if (!isValidInput(sourceNumber, sourceBase)) {
-            cerr << "Invalid input. Please enter a valid numeric value for the chosen base." << endl;
+        if (!converter.isValidInput(sourceNumber, sourceBase)) {
+            std::cerr << "Invalid input. Please enter a valid numeric value for the chosen base." << endl;
             cout << endl;
-            continue;  // Powrót do pętli wyboru systemu
-
-          
-            }
+            continue;
         }
 
-        // Menu wyboru systemu liczbowego docelowego
         cout << "Choose target numeric system:" << endl;
         cout << "1. Binary" << endl;
         cout << "2. Octal" << endl;
@@ -53,12 +43,10 @@ int main() {
         cout << "4. Hexadecimal" << endl;
         cout << "0. Exit" << endl;
 
-        cout << endl;
-
-        targetBase = getInteger("Choice: ", 0, 4);
+        targetBase = converter.getInteger("Choice: ", 0, 4);
 
         if (targetBase == 0) {
-            cout << "Program terminated." << endl;
+            std::cout << "Program terminated." << endl;
             break;
         }
 
@@ -91,27 +79,25 @@ int main() {
 
         switch (targetBase) {
         case 1:
-            result = toBinary(decimalNumber);
+            result = converter.toBinary(decimalNumber);
             break;
         case 2:
-            result = toOctal(decimalNumber);
+            result = converter.toOctal(decimalNumber);
             break;
         case 3:
             result = std::to_string(decimalNumber); // Decimal
             break;
         case 4:
-            result = toHexadecimal(decimalNumber);
+            result = converter.toHexadecimal(decimalNumber);
             break;
         default:
             std::cerr << "Invalid choice for target numeric system." << endl;
             return EXIT_FAILURE;
         }
 
-        // Wyświetlenie wyniku
         cout << "Result: " << result << endl;
         cout << endl;
     }
 
     return EXIT_SUCCESS;
 }
-
