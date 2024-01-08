@@ -7,13 +7,14 @@ int main() {
     while (true) {
         int sourceBase, targetBase;
         std::string sourceNumber;
-
-        cout << "Choose source numeric system:" << endl;
-        cout << "1. Binary" << endl;
-        cout << "2. Octal" << endl;
-        cout << "3. Decimal" << endl;
-        cout << "4. Hexadecimal" << endl;
-        cout << "0. Exit" << endl;
+        cout << "-------------------------------" << endl;
+        cout << "|" << "Choose source numeric system:" << "|" << endl;
+        cout << "|" << "1. Binary" << "                    |" << endl;
+        cout << "|" << "2. Octal" << "                     |" << endl;
+        cout << "|" << "3. Decimal" << "                   |" << endl;
+        cout << "|" << "4. Hexadecimal" << "               |" << endl;
+        cout << "|" << "0. Exit" << "                      |" << endl;
+        cout << "-------------------------------" << endl;
 
         sourceBase = converter.getInteger("Choice: ", 0, 4);
 
@@ -36,12 +37,14 @@ int main() {
             continue;
         }
 
-        cout << "Choose target numeric system:" << endl;
-        cout << "1. Binary" << endl;
-        cout << "2. Octal" << endl;
-        cout << "3. Decimal" << endl;
-        cout << "4. Hexadecimal" << endl;
-        cout << "0. Exit" << endl;
+        cout << "-------------------------------" << endl;
+        cout << "|" << "Choose target numeric system:" << "|" << endl;
+        cout << "|" << "1. Binary" << "                    |" << endl;
+        cout << "|" << "2. Octal" << "                     |" << endl;
+        cout << "|" << "3. Decimal" << "                   |" << endl;
+        cout << "|" << "4. Hexadecimal" << "               |" << endl;
+        cout << "|" << "0. Exit" << "                      |" << endl;
+        cout << "-------------------------------" << endl;
 
         targetBase = converter.getInteger("Choice: ", 0, 4);
 
